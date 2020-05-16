@@ -1,0 +1,3 @@
+enum type  {
+    BIG = 'big'
+}
