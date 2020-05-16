@@ -1,5 +1,7 @@
+
 import path from 'path'
 import webpack from 'webpack'
+import  HtmlWebpackPlugin from 'html-webpack-plugin'
 
 const isDev: boolean = process.env.NODE_ENV === 'development'
 
@@ -15,12 +17,15 @@ const config: webpack.Configuration = {
             }
         ]
     },
+    plugins: [
+        new HtmlWebpackPlugin()
+    ],
     resolve : {
         extensions : ['.tsx','.ts','.js']
     },
     output : {
         path : path.resolve(__dirname,'dist'),
-        filename : '[name].bundle.js'
+        filename : '[name].[hash].js'
     }
 }
 
