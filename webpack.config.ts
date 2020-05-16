@@ -5,9 +5,22 @@ import  HtmlWebpackPlugin from 'html-webpack-plugin'
 
 const isDev: boolean = process.env.NODE_ENV === 'development'
 
+const entry : string [] = isDev?['webpack-hot-middleware/client??reload=true', './src/index']: ['./src/index']
+
+const plugins : any[] = [
+    new HtmlWebpackPlugin({
+        template : path.resolve(__dirname,'./tmpl.html')
+    }),
+    new webpack.HotModuleReplacementPlugin()
+]
+
+if(!isDev){
+    plugins.pop()
+}
+
 const config: webpack.Configuration = {
     mode: isDev?"development": "production",
-    entry : './src/index.ts',
+    entry : entry,
     module:{
         rules : [
             {
@@ -17,9 +30,7 @@ const config: webpack.Configuration = {
             }
         ]
     },
-    plugins: [
-        new HtmlWebpackPlugin()
-    ],
+    plugins: plugins,
     resolve : {
         extensions : ['.tsx','.ts','.js']
     },
