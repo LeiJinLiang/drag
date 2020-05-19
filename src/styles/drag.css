@@ -4,4 +4,10 @@
     align-items: center;
     padding: 10rem;
     background-color: pink;
+    margin-top: 10rem;
+}
+
+.drag{
+    position: absolute;
+    top: 0;
 }
